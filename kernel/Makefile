@@ -45,7 +45,10 @@ CLINKFLAGS := \
 
 CFLAGS = -Wall -Wextra -O2
 
-subleq.bin: $(BINS) $(OBJ) $(H_FILES)
+subleq.bin: subleq.elf
+	objcopy -O binary subleq.elf $@
+
+subleq.elf: $(BINS) $(OBJ) $(H_FILES)
 	$(CC) $(OBJ) $(CLINKFLAGS) -o $@
 
 %.o: %.c

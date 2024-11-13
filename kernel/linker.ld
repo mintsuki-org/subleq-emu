@@ -1,4 +1,3 @@
-OUTPUT_FORMAT(binary)
 ENTRY(_start)
 
 SECTIONS
@@ -26,5 +25,10 @@ SECTIONS
         KEEP(*(.bss))
         KEEP(*(COMMON))
         sections_bss_end = . - 0xffffffffc0000000;
+    }
+
+    /DISCARD/ : {
+        *(.note .note.*)
+        *(.eh_frame*)
     }
 }
